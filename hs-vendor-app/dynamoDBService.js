@@ -81,6 +81,15 @@ module.exports = {
                 'BusinessType': promoData.businessType
             }
         }).promise();
+    },
 
+    getPromo: function (vendor) {
+        return ddb.scan({
+            TableName: 'Promotions',
+            ExpressionAttributeValues: {
+                ':vendor': vendor
+            },
+            FilterExpression: 'VendorId = :vendor'
+        }).promise();
     }
 }
